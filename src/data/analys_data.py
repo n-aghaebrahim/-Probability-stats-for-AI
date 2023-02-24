@@ -1,36 +1,23 @@
-def perform_eda(df):
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import stats
+
+def perform_eda(wine_df):
     """
     A function that performs Exploratory Data Analysis on a given pandas DataFrame.
     
-    Parameters:
-    df (pandas.DataFrame): The DataFrame to perform EDA on.
+    Args:
+    wine_df (pandas.DataFrame): The DataFrame to perform EDA on.
     
-    Returns:
-    None
     """
-    # print the first 5 rows of the data
-    print("First 5 rows:")
-    print(df.head())
-    print("\n")
 
-    # print the shape of the data
-    print("Data Shape:", df.shape)
-    print("\n")
-
-    # print the data types of each column
-    print("Data Types:")
-    print(df.dtypes)
-    print("\n")
-
-    # print the summary statistics of the numerical columns
-    print("Summary Statistics:")
-    print(df.describe())
-    print("\n")
-
-    # print the number of missing values in each column
-    print("Missing Values:")
-    print(df.isnull().sum())
-    print("\n")
+    with open ('logs/analysis/eda.csv', 'a') as f:
+        f.write(f'\n\ndataframe shape: \n:w{wine_df.shape}\n')
+        f.write(f'random samples from daafram: \n{wine_df.sample(5)}\n')
+        f.write(f'data types: \n{wine_df.dtypes}\n')
+        f.write(f'statistics summary: \n{wine_df.describe()}\n')
+        f.write(f'mising values: \n\n {wine_df.isnull().sum()}\n')
+        
 
 
 
@@ -40,6 +27,7 @@ def explore_data(df):
     Create plots to explore the given DataFrame.
     """
     
+    
     # Plot histogram of all numerical columns
     num_cols = df.select_dtypes(include=['float', 'int']).columns
     num_cols_count = len(num_cols)
@@ -48,7 +36,7 @@ def explore_data(df):
         sns.histplot(data=df, x=col, kde=True, ax=axs[i])
         axs[i].set_xlabel(col)
     
-    plt.show()
+        plt.savefig(f'logs/plots/histogram_{col}.png')
     
     # Plot correlation matrix
     corr = df.corr()
@@ -59,12 +47,14 @@ def explore_data(df):
     ax.set_yticks(range(len(corr.columns)))
     ax.set_yticklabels(corr.columns)
     fig.colorbar(im)
-    plt.show()
+
+    plt.savefig('logs/plots/correlation_matrix.png')
     
     # Plot pairplot of all numerical columns
     sns.set(font_scale=0.8)
     sns.pairplot(df.select_dtypes(include=['float', 'int']))
-    plt.show()
+    
+    plt.savefig('logs/plots/pairplot.png')
 
     # Plot distribution plot of all numerical columns
     num_cols = df.select_dtypes(include=['float', 'int']).columns
@@ -74,7 +64,7 @@ def explore_data(df):
         sns.displot(data=df, x=col, kde=True, ax=axs[i])
         axs[i].set_xlabel(col)
     
-    plt.show()
+        plt.savefig(f'logs/plots/distribution_{col}.png')
     
     # Plot boxplot of each numerical column
     num_cols = df.select_dtypes(include=['float', 'int']).columns
@@ -83,16 +73,19 @@ def explore_data(df):
     for i, col in enumerate(num_cols):
         df.boxplot(column=col, ax=axs[i])
     
-    plt.show()
+        plt.savefig(f'logs/plots/boxplot_{col}.png')
     
     # Plot bar chart of each categorical column
     cat_cols = df.select_dtypes(include=['object']).columns
     cat_cols_count = len(cat_cols)
-    fig, axs = plt.subplots(cat_cols_count, 1, figsize=(8, 4*cat_cols_count))
-    for i, col in enumerate(cat_cols):
-        df[col].value_counts().plot(kind='bar', ax=axs[i])
+    try:
+        fig, axs = plt.subplots(cat_cols_count, 1, figsize=(8, 4*cat_cols_count))
+        for i, col in enumerate(cat_cols):
+            df[col].value_counts().plot(kind='bar', ax=axs[i])
     
-    plt.show()
+            plt.savefig(f'logs/plots/bar_chart_{col}.png')
+    except:
+        pass
 
 
 
@@ -119,9 +112,10 @@ def t_test_p_value(dataframe, target_column):
             
             # Store the t-statistic and p-value in the results dictionary
             results[column] = {"t-statistic": round(t_stat,3), "p-value": round(p_value,3)}
+
+    with open ('logs/analysis/t_test_p_value.csv', 'w') as f:
+        f.write(str(results)) 
     
-    # Return the results dictionary
-    return results
 
 
 

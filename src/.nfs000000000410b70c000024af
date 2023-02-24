@@ -1,0 +1,32 @@
+from data import data
+from data import analys_data
+
+# .csv files
+red_wine = 'data/wine_data/winequality/winequality-red.csv'
+white_wine = 'data/wine_data/winequality/winequality-white.csv'
+
+def main():
+    # Generate dataframe
+    wine_df = data.combine_data(red_wine_data_path=red_wine,
+                                white_wine_data_path=white_wine
+                                )
+    print('dataframe shape: ', wine_df.shape)
+    print('random samples from daafram: \n', wine_df.sample(5))
+    print('data types: \n', wine_df.dtypes)
+    print('statistics summary: \n', wine_df.describe())
+    print('mising values: \n\n', wine_df.isnull().sum())
+
+
+    # preprocess the dataframe
+    X_train, X_test, y_train, y_test = data.preprocess_df(wine_df)
+    print('\n\nx train shape: ', X_train.shape)
+    print('X test shape: ', X_test.shape)
+    print('y train shape: ', y_train.shape)
+    print('y test shape: ', y_test.shape)
+
+
+
+    # analysing data
+   
+
+main()

@@ -1,0 +1,64 @@
+
+
+x train shape:  (5197, 13)
+X test shape: (1300, 13)
+y train shape: (5197,)
+y test shape: (1300,)
+
+
+dataframe shape: 
+:w(6497, 14)
+random samples from daafram: 
+      index  fixed acidity  volatile acidity  citric acid  ...  sulphates  alcohol  Red0_White1  quality
+4188   2589            7.2             0.615         0.10  ...       0.48     9.70            1        4
+5917   4318            6.3             0.410         0.22  ...       0.39    11.94            1        7
+3318   1719            5.8             0.230         0.27  ...       0.31     9.40            1        6
+1214   1214           10.2             0.330         0.46  ...       0.48    10.40            0        6
+619     619           11.3             0.370         0.41  ...       0.80     9.30            0        5
+
+[5 rows x 14 columns]
+data types: 
+index                     int64
+fixed acidity           float64
+volatile acidity        float64
+citric acid             float64
+residual sugar          float64
+chlorides               float64
+free sulfur dioxide     float64
+total sulfur dioxide    float64
+density                 float64
+pH                      float64
+sulphates               float64
+alcohol                 float64
+Red0_White1               int64
+quality                   int64
+dtype: object
+statistics summary: 
+             index  fixed acidity  volatile acidity  citric acid  ...    sulphates      alcohol  Red0_White1      quality
+count  6497.000000    6497.000000       6497.000000  6497.000000  ...  6497.000000  6497.000000  6497.000000  6497.000000
+mean   2042.535632       7.215307          0.339666     0.318633  ...     0.531268    10.491801     0.753886     5.818378
+std    1436.926393       1.296434          0.164636     0.145318  ...     0.148806     1.192712     0.430779     0.873255
+min       0.000000       3.800000          0.080000     0.000000  ...     0.220000     8.000000     0.000000     3.000000
+25%     812.000000       6.400000          0.230000     0.250000  ...     0.430000     9.500000     1.000000     5.000000
+50%    1649.000000       7.000000          0.290000     0.310000  ...     0.510000    10.300000     1.000000     6.000000
+75%    3273.000000       7.700000          0.400000     0.390000  ...     0.600000    11.300000     1.000000     6.000000
+max    4897.000000      15.900000          1.580000     1.660000  ...     2.000000    14.900000     1.000000     9.000000
+
+[8 rows x 14 columns]
+mising values: 
+
+ index                   0
+fixed acidity           0
+volatile acidity        0
+citric acid             0
+residual sugar          0
+chlorides               0
+free sulfur dioxide     0
+total sulfur dioxide    0
+density                 0
+pH                      0
+sulphates               0
+alcohol                 0
+Red0_White1             0
+quality                 0
+dtype: int64
