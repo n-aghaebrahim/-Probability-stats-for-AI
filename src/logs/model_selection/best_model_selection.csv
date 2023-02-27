@@ -1,0 +1,14 @@
+Best Classifier is: 
+RandomForestClassifier
+
+model_scores:
+   index                   Model  Score
+0      3  RandomForestClassifier  0.688
+1      2  DecisionTreeClassifier  0.595
+2      4                     SVC  0.579
+3      1    KNeighborsClassifier  0.553
+4      0      LogisticRegression  0.535
+5      5              GaussianNB  0.415
+
+pred results:
+[array([5, 6, 6, ..., 6, 7, 7]), array([6, 6, 5, ..., 6, 6, 7]), array([5, 6, 7, ..., 5, 7, 6]), array([6, 6, 5, ..., 5, 6, 7]), array([5, 6, 6, ..., 6, 7, 7]), array([6, 6, 5, ..., 5, 9, 9])]

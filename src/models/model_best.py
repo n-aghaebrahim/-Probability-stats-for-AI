@@ -1,3 +1,15 @@
+import pandas as pd
+import numpy as np
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
 def best_model(X_train, X_test, y_train, y_test, target_col):
     """
     X_train:
@@ -42,6 +54,14 @@ def best_model(X_train, X_test, y_train, y_test, target_col):
     
     # Find the index of the classifier with the highest accuracy score
     best_index = np.argmax(scores)
-    
+
+    with open ('logs/model_selection/best_model_selection.csv', 'w') as f:
+        f.write('Best Classifier is: \n')
+        f.write(str(classifiers[best_index]))
+        f.write('model_scores:\n')
+        f.write(str(model_scores))
+        f.write('pred results:\n')
+        f.write(str(pred))
+
     # Return the classifier with the highest accuracy score
     return print('Best Classifier is: ', classifiers[best_index],'\n\n', model_scores), pred

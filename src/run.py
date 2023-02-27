@@ -1,6 +1,11 @@
 import os
+
+from models import model_grid_search_rfc
+from models import model_best
+from models import model_dnn
 from data import data
 from data import analys_data
+
 
 # .csv files
 red_wine = 'train_data/winequality/winequality-red.csv'
@@ -36,6 +41,12 @@ def main():
     analys_data.explore_data(wine_df)
     analys_data.t_test_p_value(dataframe=wine_df,
                                 target_column='quality')
-   
+
+    # run model
+    model_grid_search_rfc.grid_search_rfc(X_train, y_train, cv=5)
+    model_best.best_model(X_train, X_test, y_train, y_test, 'quality')
+    model_dnn.dnn(X_train, X_test, y_train, y_test)
+
+
 
 main()
